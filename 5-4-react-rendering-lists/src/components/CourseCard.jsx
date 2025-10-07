@@ -4,28 +4,41 @@ import TaskItem from "./TaskItem";
 export default function CourseCard({ course, index, onMutateCourse }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+  const [tasks, setTasks] = useState([]);
 
   function toggleTask(id) {
-   
+
   }
 
   function deleteTask(id) {
-    
+
   }
 
   function addTask(e) {
     e.preventDefault();
-   
+
   }
 
   return (
     <article className="course card">
       <header className="cardHeader">
         <h2>{course.title}</h2>
- 
+          <ul className="tasks">
+              {course.tasks.map(task => (
+                  <TaskItem
+                      key = {task.id}
+                      task={task}
+                      onToggle={toggleTask}
+                      onDelete={deleteTask}
+                  />
+              ))}
+
+          </ul>
+
       </header>
 
-    
+
+
       <form onSubmit={addTask} className="newTask">
         <input
           className="titleField"
